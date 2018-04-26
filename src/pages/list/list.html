@@ -14,7 +14,7 @@
         <h2>{{item.label}}</h2>
       </ion-item>
       <ion-item-options side="left">
-        <button ion-button color="danger">
+        <button (click)="delete(item)" ion-button color="danger">
           <ion-icon name="trash"></ion-icon>
         </button>
       </ion-item-options>
@@ -25,4 +25,6 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  <button ion-button (click)="addPrompt()" full color="secondary">Add Item</button>
 </ion-content>

@@ -27,6 +27,21 @@ export class ShoppingListItemsProvider {
 
     return this.http.put(this.apiUrl + "/" + item.id, body, {headers}).toPromise();
   }
+
+  addItem(item) {
+    const 
+      headers = new HttpHeaders().set("Content-Type", "application/json"),
+      body = JSON.stringify(item);
+
+    return this.http.post(this.apiUrl, body, {headers}).toPromise();
+  }
+
+  delete(item) {
+    const 
+      headers = new HttpHeaders().set("Content-Type", "application/json");
+
+    return this.http.delete(this.apiUrl + "/" + item.id, {headers}).toPromise();
+  }
   
   private extractData(res: Response) {
     let body = res;
