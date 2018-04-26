@@ -6,9 +6,12 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
+import { HttpClientModule } from '@angular/common/http'
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShoppingListItemsProvider } from '../providers/shopping-list-items/shopping-list-items';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { ShoppingListItemsProvider } from '../providers/shopping-list-items/shop
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

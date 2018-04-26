@@ -5,7 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ShoppingListItemsProvider {
-  private apiUrl = 'http://localhost:5000/api/shoppinglistitem';
+  private apiUrl = 'http://homespotshoppinglistapi.azurewebsites.net/api/shoppinglistitem';
 
   constructor(public http: HttpClient) {
     console.log('Hello ShoppingListItemsProvider Provider');
