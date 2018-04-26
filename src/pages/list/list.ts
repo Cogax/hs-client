@@ -11,7 +11,6 @@ export class ListPage {
   errorMessage: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ShoppingListItemsProvider) {
-
   }
 
   ionViewDidLoad() {
@@ -21,7 +20,18 @@ export class ListPage {
   getItems() {
     this.api.getItems()
        .subscribe(
-         countries => this.items = countries,
+         items => this.items = items,
          error =>  this.errorMessage = <any>error);
+  }
+
+  complete(item) {
+    this.api.complete(item).then(item => {
+      // wtf??
+      let is = <Array<{id: number}>>this.items;
+      console.log(is);
+      is = is.filter(i => i.id !== item['id']);
+      console.log(is);
+      this.items = <any>is;
+  });
   }
 }

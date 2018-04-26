@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
 
@@ -16,6 +16,16 @@ export class ShoppingListItemsProvider {
       map(this.extractData),
       catchError(this.handleError)
     );
+  }
+
+  complete(item) {
+    item.isComplete = true;
+
+    const 
+      headers = new HttpHeaders().set("Content-Type", "application/json"),
+      body = JSON.stringify(item);
+
+    return this.http.put(this.apiUrl + "/" + item.id, body, {headers}).toPromise();
   }
   
   private extractData(res: Response) {
