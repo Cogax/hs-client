@@ -4,43 +4,26 @@ import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
-export class ShoppingListItemsProvider {
-  private apiUrl = 'http://homespotshoppingapi.azurewebsites.net/api/shoppinglistitem';
+export class ExpensesProvider {
+  private apiUrl = 'http://homespotfinanceapi.azurewebsites.net/api/expense';
 
   constructor(public http: HttpClient) {
-    console.log('Hello ShoppingListItemsProvider Provider');
+    console.log('Hello Expenses Provider');
   }
 
-  getItems(): Observable<{}> {
+  getExpenses(): Observable<{}> {
     return this.http.get(this.apiUrl).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
   }
 
-  complete(item) {
-    item.isComplete = true;
-
+  addExpense(expense) {
     const 
       headers = new HttpHeaders().set("Content-Type", "application/json"),
-      body = JSON.stringify(item);
-
-    return this.http.put(this.apiUrl + "/" + item.id, body, {headers}).toPromise();
-  }
-
-  addItem(item) {
-    const 
-      headers = new HttpHeaders().set("Content-Type", "application/json"),
-      body = JSON.stringify(item);
+      body = JSON.stringify(expense);
 
     return this.http.post(this.apiUrl, body, {headers}).toPromise();
-  }
-
-  delete(item) {
-    const 
-      headers = new HttpHeaders().set("Content-Type", "application/json");
-
-    return this.http.delete(this.apiUrl + "/" + item.id, {headers}).toPromise();
   }
   
   private extractData(res: Response) {

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Expenses</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let expense of expenses">
+      <ion-item>
+        <h2>{{expense.label}}</h2>
+        <p>{{expense.amount}}</p>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <button ion-button (click)="addPrompt()" full color="secondary">Add Expense</button>
+</ion-content>
